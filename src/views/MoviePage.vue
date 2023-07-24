@@ -38,16 +38,18 @@
       </div>
     </div>
     <Cast v-if="movie" v-bind:list="movie.credits.cast" />
+    <Gallery v-if="movie" v-bind:list="movie.images.posters" />
   </div>
 </template>
   
 <script>
 import { movieApi } from "@/api/movie-api";
 import Cast from "@/components/Сast.vue";
+import Gallery from "@/components/Gallery.vue";
 
 export default {
   name: 'MovieCard',
-  components: { Cast },
+  components: { Cast, Gallery },
 
   data: function () {
     return {
@@ -154,7 +156,32 @@ export default {
 .vote-bar {
   width: 20vw;
   border-radius: 50px;
-  border: 1px solid black;
+  border: 1px solid rgba(30, 144, 255, 1);
+}
+
+@media screen and (max-width: 575px) {
+
+  .filter {
+    flex-direction: column;
+  }
+
+  .poster {
+    width: 80vw;
+    margin: 0;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+
+  .banner-content {
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    width: 80vw;
+  }
+
+  .vote-bar {
+    width: 40vw;
+  }
+
 }
 
 h3 {

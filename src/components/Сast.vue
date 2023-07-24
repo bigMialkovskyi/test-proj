@@ -72,6 +72,32 @@ export default {
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 968px) {
+  .card {
+    width: 15vw;
+
+    img {
+      width: 15vw;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .card {
+    width: 25vw;
+
+    img {
+      width: 25vw;
+    }
+  }
+
+  .character {
+    font-size: .8em;
+    padding: 0 2px;
+    margin-bottom: 2px;
+  }
+}
+
 h3 {
   margin: 40px 0 0;
 }

@@ -31,7 +31,7 @@ export default {
 	justify-content: space-between;
 	padding: 1vw;
 	position: relative;
-	min-height: 5vw;
+	min-height: 10vw;
 }
 
 .date {
@@ -54,6 +54,7 @@ export default {
 }
 
 .title {
+	margin-top: 2vh;
 	font-size: 20px;
 	width: 100%;
 	font-weight: bold;
@@ -69,10 +70,10 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 3.5vw;
-	height: 3.5vw;
+	width: 5vw;
+	height: 5vw;
 	position: absolute;
-	top: -2vw;
+	top: -2.5vw;
 	left: 1vw;
 	background-color: black;
 	border: 3px solid rgb(0, 255, 0);
@@ -84,6 +85,64 @@ export default {
 		font-weight: bold;
 		color: #e3e3e3;
 		user-select: none;
+	}
+}
+
+
+@media screen and (max-width: 968px) {
+	.vote {
+		width: 5vw;
+		height: 5vw;
+		top: -2.5vw;
+
+		p {
+			font-size: 16px;
+		}
+	}
+}
+
+
+@media screen and (max-width: 767px) {
+
+	.title {
+		margin-top: 3vh;
+		font-size: 18px;
+	}
+
+	.vote {
+		width: 6vw;
+		height: 6vw;
+		top: -3vw;
+
+		p {
+			font-size: 14px;
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+
+	.title {
+		margin-top: 3vh;
+	}
+
+	.vote {
+		width: 8vw;
+		height: 8vw;
+		top: -4vw;
+
+		p {
+			font-size: 14px;
+		}
+	}
+
+
+	.card {
+		width: 40vw;
+
+		img {
+			width: 40vw;
+		}
 	}
 }
 
