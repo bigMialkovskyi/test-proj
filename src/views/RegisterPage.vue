@@ -44,7 +44,7 @@
       <p v-if="showError" id="error">{{ errorMessage }}</p>
       <div class="have-account">
         <p>Have an account?</p>
-        <router-link to="/login">
+        <router-link to="/">
           <button>Login to personal account</button>
         </router-link>
       </div>
@@ -112,11 +112,16 @@ export default {
     async submit() {
       try {
         const response = await usersApi.createUser(this.form)
-        console.log(response.response_message)
+        // console.log(response)
+        if (response.success) {
+          this.$router.push({
+            name: "login"
+          });
+        }
       } catch (error) {
         console.error(error);
-        // this.errorMessage = error.response.data.error;
-        // this.showError = true;
+        this.errorMessage = error.message
+        this.showError = true
       }
     }
   },
@@ -162,7 +167,7 @@ export default {
   }
 
   button {
-    background-color: #00bfff;
+    background-color: rgb(3, 37, 65);
     color: white;
     padding: 12px 20px;
     cursor: pointer;
@@ -171,8 +176,8 @@ export default {
   }
 
   button:hover {
+    background-color: rgb(6, 66, 114);
     cursor: pointer;
-    background-color: #87cefa;
   }
 }
 

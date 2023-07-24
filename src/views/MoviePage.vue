@@ -23,10 +23,15 @@
           </ul>
 
 
+          <ul class="list" v-if="movie.production_companies.length">
+            <li v-for=" companie in movie.production_companies" :key="companie.id">
+              <p class="gener">{{ companie.name }}</p>
+            </li>
+          </ul>
+
           <ul class="list" v-if="movie.production_countries.length">
             <li v-for=" сounrtie in movie.production_countries" :key="сounrtie.name">
               <p class="gener">{{ сounrtie.iso_3166_1 }}</p>
-              <!-- <p class="gener">{{ сounrtie.name }}</p> -->
             </li>
           </ul>
 
@@ -37,8 +42,8 @@
         </div>
       </div>
     </div>
-    <Cast v-if="movie" v-bind:list="movie.credits.cast" />
-    <Gallery v-if="movie" v-bind:list="movie.images.posters" />
+    <Cast v-if="movie" :list="movie.credits.cast" />
+    <Gallery v-if="movie" :list="movie.images.posters" />
   </div>
 </template>
   
@@ -66,7 +71,7 @@ export default {
     async getMovie() {
       const response = await movieApi.getMovieInformation(this.$route.query.id);
       this.movie = response.data
-      console.log(this.movie)
+      // console.log(this.movie)
     },
   }
 }

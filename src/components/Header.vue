@@ -1,8 +1,11 @@
 <template>
-  <header class="header">
+  <header id="header" class="header">
     <p>Hello World</p>
-    <router-link to="/">
+    <router-link to="/home">
       <img class="home-btn" v-if="this.$route.name == 'movie-page'" src="../assets/home.svg" alt="">
+    </router-link>
+    <router-link to="/">
+      <img class="home-btn" v-if="this.$route.name !== 'login' && this.$route.name !== 'register'" src="../assets/log-out.svg" alt="">
     </router-link>
   </header>
 </template>

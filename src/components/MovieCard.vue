@@ -1,6 +1,8 @@
 <template>
 	<div class="card">
-		<img class="poster" :src="`https://image.tmdb.org/t/p/w500` + `${poster_path}`" alt="poster">
+		<figure v-lazyload>
+			<img class="poster" :data-url="`https://image.tmdb.org/t/p/w500` + `${poster_path}`" alt="poster">
+		</figure>
 		<div class="desc">
 			<div class="vote">
 				<p>{{ vote }}</p>
@@ -64,6 +66,7 @@ export default {
 
 .card:hover {
 	box-shadow: 7px 9px 15px rgba(0, 0, 0, .3);
+	cursor: pointer;
 }
 
 .vote {
@@ -88,7 +91,6 @@ export default {
 	}
 }
 
-
 @media screen and (max-width: 968px) {
 	.vote {
 		width: 5vw;
@@ -100,7 +102,6 @@ export default {
 		}
 	}
 }
-
 
 @media screen and (max-width: 767px) {
 
@@ -136,7 +137,6 @@ export default {
 		}
 	}
 
-
 	.card {
 		width: 40vw;
 
@@ -145,7 +145,6 @@ export default {
 		}
 	}
 }
-
 
 h3 {
 	margin: 40px 0 0;

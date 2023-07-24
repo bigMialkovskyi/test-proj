@@ -59,8 +59,16 @@ export default {
     async submit() {
       try {
         const response = await usersApi.userLogin(this.form)
+        // console.log(response)
+        if (response.success) {
+          this.$router.push({
+            name: "home"
+          });
+        }
       } catch (error) {
         console.error(error);
+        this.errorMessage = error.message
+        this.showError = true
       }
     },
   }
@@ -82,7 +90,7 @@ export default {
   }
 
   button {
-    background-color: #00bfff;
+    background-color: rgb(3, 37, 65);
     color: white;
     padding: 12px 20px;
     cursor: pointer;
@@ -92,7 +100,7 @@ export default {
 
   button:hover {
     cursor: pointer;
-    background-color: #87cefa;
+    background-color: rgb(6, 66, 114);
   }
 }
 
