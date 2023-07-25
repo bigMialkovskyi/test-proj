@@ -1,7 +1,7 @@
 const userLogin = async (form) => {
   return new Promise((resolve, reject) => {
     const dbName = "auth";
-    const dbVersion = 3;
+    const dbVersion = 2;
     let db
 
     function getFromDB() {
@@ -64,10 +64,8 @@ const userLogin = async (form) => {
 
 const createUser = async (newUser) => {
   return new Promise((resolve, reject) => {
-
     const dbName = "auth";
-    const dbVersion = 3;
-    let response_message = ''
+    const dbVersion = 2;
     let db
 
     const DBOpenRequest = window.indexedDB.open(dbName, dbVersion);
@@ -80,7 +78,7 @@ const createUser = async (newUser) => {
       request.onsuccess = (event) => {
         return resolve({
           success: true,
-          message: "Data added to IndexedDB successfully! Maybe the username or email address is already taken",
+          message: "Data added to IndexedDB successfully!",
           result: request.result
         })
       };
@@ -88,12 +86,11 @@ const createUser = async (newUser) => {
       request.onerror = (event) => {
         return reject({
           success: false,
-          message: "Error adding data to IndexedDB",
+          message: "Error adding data to IndexedDB. Maybe the username or email address is already taken",
           error: event.target.error
         })
       };
     }
-
 
     DBOpenRequest.onsuccess = (event) => {
       db = DBOpenRequest.result;
@@ -123,9 +120,8 @@ const createUser = async (newUser) => {
       const objectStore = db.createObjectStore("users-list", { keyPath: "id", autoIncrement: true });
       objectStore.createIndex("login", "login", { unique: true });
       objectStore.createIndex("email", "email", { unique: true });
-      objectStore.createIndex("password", "email", { unique: false });
+      objectStore.createIndex("password", "password", { unique: false });
       console.log("Object store created and upgraded.")
-      addToDB(newUser)
     };
   })
 };
