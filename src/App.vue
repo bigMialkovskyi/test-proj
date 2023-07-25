@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// компонент яки містить хедер та футер
 import defaultLayout from "@/layouts/default.vue";
 
 export default {

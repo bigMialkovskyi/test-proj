@@ -1,11 +1,17 @@
 <template>
   <header id="header" class="header">
     <p>Hello World</p>
+    <!-- кнопка що певертає користувача на головну сторінку
+      на сторінці реєстрації та сторінці входу в особистий кабінет вона не доступна
+      щоб неавторизований користувач не міг відразу потрапити на головну сторінку -->
     <router-link to="/home">
       <img class="home-btn" v-if="this.$route.name == 'movie-page'" src="../assets/home.svg" alt="">
     </router-link>
+    <!-- кнопка виходу з особистого кабінету
+    повертає користувача на сторінку входу -->
     <router-link to="/">
-      <img class="home-btn" v-if="this.$route.name !== 'login' && this.$route.name !== 'register'" src="../assets/log-out.svg" alt="">
+      <img class="home-btn" v-if="this.$route.name !== 'login' && this.$route.name !== 'register'"
+        src="../assets/log-out.svg" alt="">
     </router-link>
   </header>
 </template>

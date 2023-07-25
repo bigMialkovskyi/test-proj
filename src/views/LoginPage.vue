@@ -34,6 +34,7 @@
 </template>
   
 <script>
+// сторінка для входу в особистий кабінет
 import { usersApi } from "@/api/users-api";
 export default {
   name: "LoginPage",
@@ -56,8 +57,11 @@ export default {
       this.showPassword = !this.showPassword;
     },
 
+    //  функція для входу в особистий кабінет
     async submit() {
       try {
+        // фунція приймає форму з обліковами даними
+        // якщо користувач зареєстрований і дані введено вірно переносимо кристувача на головну сторінку
         const response = await usersApi.userLogin(this.form)
         // console.log(response)
         if (response.success) {
@@ -66,6 +70,7 @@ export default {
           });
         }
       } catch (error) {
+        // у разі помилки показуємо її користувачу 
         console.error(error);
         this.errorMessage = error.message
         this.showError = true

@@ -78,6 +78,7 @@ export default {
 
   watch: {
     // перевірка на відповідність введених паролів
+    // якщо паролі співпадають то доємо їх до форми
     inpPassReepat() {
       if (this.inpPass == this.inpPassReepat) {
         this.form.password = this.inpPassReepat;
@@ -109,6 +110,9 @@ export default {
       e.preventDefault();
       this.showPasswordRepeat = !this.showPasswordRepeat;
     },
+    // функція що передає форму на API 
+    // якщо дані відповідають вимогам - створюється новий користувач
+    // відправляємо користувача на сторінку для входу 
     async submit() {
       try {
         const response = await usersApi.createUser(this.form)

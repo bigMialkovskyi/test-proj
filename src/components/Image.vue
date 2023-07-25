@@ -6,6 +6,7 @@
 </template>
   
 <script>
+// компонент використовується на головній сторінці для lazyload
 export default {
   name: "Image",
   props: {

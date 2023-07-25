@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// функцыя що повертає список популярних фільмів 
+// аргументом приймає номер сторінки (потрібно для АРІ)
 const getMovieList = async (page) => {
   const config = {
     headers: {
@@ -19,6 +21,8 @@ const getMovieList = async (page) => {
   }
 }
 
+// функція для отримання детальної інформації про фільм
+// приймає аргументом ID фільму
 const getMovieInformation = async (ID) => {
   const config = {
     headers: {
@@ -35,8 +39,8 @@ const getMovieInformation = async (ID) => {
   }
 }
 
+// функція для пошуку фільмів за назвою та мовою оригіналу
 const searchMovie = async (searchParams, page) => {
-  // let params = { ...searchParams, ...{ page } }
   const config = {
     headers: {
       Authorization: process.env.VUE_APP_API_KEY,
@@ -57,6 +61,7 @@ const searchMovie = async (searchParams, page) => {
   }
 }
 
+// експорт функцій
 export const movieApi = {
   getMovieList,
   getMovieInformation,

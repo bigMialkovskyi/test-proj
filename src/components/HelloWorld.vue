@@ -40,29 +40,39 @@ export default {
     };
   },
   mounted: async function () {
+    // першочергове стоврення списку з фільмами
     this.getMovieList();
   },
   methods: {
+    // функція що повертає  список фільмів, аргументом приймє номер сторінки (потрібно для АРІ)
     async getMovieList() {
       const response = await movieApi.getMovieList(this.apiPage);
       this.movies = response.data.results;
     },
+    // інкрементація лічильника сторінок
     async loadNextPage() {
       this.apiPage = this.apiPage + 1
     },
+    // при натисканню на кртку отримуємо її ID та переходимо на сторінку з детальною інформацією про фільм
+    // ID передається через query параметр, потрібний на сторінці фільма щоб отримати повну інформацію
     handleClick(movieId) {
       this.$router.replace({
         name: "movie-page",
         query: { id: movieId },
       });
     },
+    // функція для пошуку фільмів, аргументами приймає форму в якій міститься назва бо її частина та код країни виробника
+    // інший параметр номер сторінки ( аналогічно getMovieList )
     async onSearch(params) {
+      // зупинка роботи функції якщо користувач не сформував фільтр для пошуку
       if (!params.query.length) return
       this.searchParams = params
       const response = await movieApi.searchMovie(params, this.apiPage);
       this.movies = response.data.results;
     },
+    // функція що очищає параметри для пошуку
     async clearFilter() {
+      // припиняє свою роботу якщо фільтр і так порожній
       if (!this.searchParams) return
       this.movies = []
       this.apiPage = 1
@@ -73,12 +83,16 @@ export default {
   },
 
   watch: {
+    // при зміні лічильника ( після натискання кнопки "MORE" ), завантажується доадатковий контент
     async apiPage() {
+      // якщо фільтр для пошуку заповнений завантажуються фільми які підходять за параметрами
       if (this.searchParams) {
         const response = await movieApi.searchMovie(this.searchParams, this.apiPage);
         if (response.data.total_pages < this.apiPage) return
+        // до існуючого масиву з фільмами додаємо новий контент
         this.movies = this.movies.concat(response.data.results)
       }
+      // якщо фільт порожній завантажується наступна сторінка популярних фільмів
       else {
         const response = await movieApi.getMovieList(this.apiPage);
         this.movies = this.movies.concat(response.data.results)

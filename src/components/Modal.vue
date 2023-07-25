@@ -17,11 +17,13 @@
 </template>
     
 <script>
+// модальне вікно де користувач формує фільтри для пошуку фільму
 export default {
   data: function () {
     return {
       name: '',
       language: null,
+      // з мов оригіналів тимчасово доступні лише дві
       languages: [
         {
           name: 'English',
@@ -35,6 +37,8 @@ export default {
     };
   },
   name: 'Modal',
+  // search формує фільтр та закриває вікно
+  // close просто закриває вікно (якщо користувач не визначився з вибором)
   emits: ['search', 'close'],
   methods: {
     searchMovies() {

@@ -6,6 +6,7 @@ import lazyload from "./directives/lazyLoad";
 
 Vue.config.productionTip = false
 
+// реєстрація кастомної дерективи для lazyload
 Vue.directive("lazyload", lazyload);
 
 new Vue({

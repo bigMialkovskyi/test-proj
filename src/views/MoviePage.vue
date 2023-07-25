@@ -10,6 +10,7 @@
 
           <div class="vote-container">
             <p class="vote">vote</p>
+            <!-- прогрес бар для відображення оцінки -->
             <div class="vote-bar"
               :style="{ 'background-image': `linear-gradient(90deg, rgba(30, 144, 255, 1) ` + `${movie.vote_average * 10}` + `%, rgba(0, 0, 0, 0) ` + `${movie.vote_average * 10}` + `%)` }">
               <p class="vote-vallue">{{ movie.vote_average }}</p>
@@ -68,6 +69,7 @@ export default {
 
   methods: {
     // функція що отримує повну інформацію про фільм 
+    // отримуємо ID фільму з query параметру переданого з головної сторінки
     async getMovie() {
       const response = await movieApi.getMovieInformation(this.$route.query.id);
       this.movie = response.data

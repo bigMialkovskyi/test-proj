@@ -1,5 +1,6 @@
 <template>
 	<div class="card">
+		<!-- елемен для реалізаціхї lazyload  -->
 		<figure v-lazyload>
 			<img class="poster" :data-url="`https://image.tmdb.org/t/p/w500` + `${poster_path}`" alt="poster">
 		</figure>
@@ -14,6 +15,8 @@
 </template>
   
 <script>
+// компонент використовується на сторінці з детальною інформацією 
+// примає від компонента предка об'єкт з інфорамацією 
 export default {
 	name: 'MovieCard',
 	props: {
