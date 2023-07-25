@@ -16,9 +16,7 @@
       </div>
 
       <div @click="clearFilter()" class="nav-btn green-btn">
-        <a :style="{ color: 'white' }" href="#header">
-          <p>clean the filter</p>
-        </a>
+        <p>clean the filter</p>
       </div>
 
     </div>
@@ -65,9 +63,12 @@ export default {
       this.movies = response.data.results;
     },
     async clearFilter() {
-      this.movies.length = []
+      if (!this.searchParams) return
+      this.movies = []
       this.apiPage = 1
       this.searchParams = null
+      const response = await movieApi.getMovieList(this.apiPage);
+      this.movies = this.movies.concat(response.data.results)
     }
   },
 
@@ -131,7 +132,6 @@ export default {
 }
 
 .blue-btn {
-  // background-color: rgb(135, 206, 250);
   background-color: rgb(3, 37, 65);
 }
 
